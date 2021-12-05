@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['id'])){
     unset($_SESSION['id']);
+    unset($_SESSION['role']);
     header("location:index.php");
 }else{
     header("location:index.php");

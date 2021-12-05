@@ -1,6 +1,6 @@
 <?php 
-
 require '../database.php';
+require '../config.php';
 session_start();
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $email = mysqli_real_escape_string($connect,htmlspecialchars($_POST['email']));
@@ -9,14 +9,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if($check->num_rows){
         $check = $check->fetch_assoc();
         $_SESSION['id'] = $check['id'];
+		$_SESSION['role'] = $check['role'];
+		if($check['role'] == "admin"){
+			header("location:" . $config['admin']);
+			die();
+		}
         header("location:index.php");
     }else{
-        $notValid = "البريد الألكتروني او كلمة المرور غير صحيحة";
+        $notValid = "Wrong Email or Password";
     }
 }
 ?>
 <link rel="stylesheet" href="css/login.css">
 <div class="container">
+<?php
+ if(isset($notValid)){
+	 echo "<p style='color:red;position:relative;left:150px'>" . $notValid ."</p>";
+ }
+?>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 col-sm-12">	
 				<div class="form">

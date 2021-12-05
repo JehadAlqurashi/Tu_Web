@@ -1,5 +1,12 @@
 <?php
-session_start();
+require '../database.php';
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $user  = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+    $connect->query("insert into contact(name,email,subject)values('$user','$email','$message')");
+    $success = "<span style='position:relative;left:30px;left:650px'>Thank You For Contacting ROSA</span>";
+}
 
 ?>
 <!DOCTYPE html>
@@ -10,7 +17,7 @@ session_start();
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>ROSA- Restaurant</title>
     <link rel="stylesheet" href="css/index.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta name="description" content="ROSA is an enchanting Parallax Restaurant WordPress Theme that allows you to tell your story in an enjoyable way, perfect for restaurants or coffee shops.">
     <meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
 
@@ -36,11 +43,7 @@ session_start();
   <![endif]-->
 
   <!--Start loader-->
-  <div class="loader-wrap">
-      <div class="loader">
-          <span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span><span class="loader-item"></span>
-      </div>
-  </div>
+
   <!--End loader-->
 
   <!--Start Dots-->
@@ -90,14 +93,13 @@ session_start();
       </nav>
       <div class="text">
           <h2>Welcome</h2>
-          <h1>THE ROSA</h1>
+          <h1 class="display-1">Contact Us</h1>
           <div class="arrow">
               <span class="left"></span>
               <i class="fas fa-asterisk"></i>
               <span class="right"></span>
           </div>
           <span>Ready To Be Opened</span>
-          <div class="button"><button>Explore</button></div>
       </div>
       <svg class="svg-down" width="192" height="61" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 160.7 61.5" enable-background="new 0 0 160.7 61.5" xml:space="preserve"><path fill="currentColor" d="M80.3,61.5c0,0,22.1-2.7,43.1-5.4s41-5.4,36.6-5.4c-21.7,0-34.1-12.7-44.9-25.4S95.3,0,80.3,0c-15,0-24.1,12.7-34.9,25.4S22.3,50.8,0.6,50.8c-4.3,0-6.5,0,3.5,1.3S36.2,56.1,80.3,61.5z"></path></svg>
       <div class="arrow-down">
@@ -107,21 +109,96 @@ session_start();
 
   <!--start About Us-->
   <div class="about-us">
-      <div class="text">
-          <h2>Discover</h2>
-          <h3>Our Story</h3>
-          <div><i class="fas fa-asterisk"></i></div>
-          <p>Rosa is a restaurant, bar and coffee roastery located on a busy corner site in Farringdon’s Exmouth Market. With glazed frontage on two sides of the building, overlooking the market and a bustling London intersection.</p>
-          <div><a class="a-CTA" href="#">About Us</a></div>
-      </div>
-      <div class="image-container">
-          <div class="image image1">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988527/vertical-photo-1.jpg" alt="Food Photo">
-          </div>
-          <div class="image image2">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988532/vertical-photo-2.jpg" alt="Food Photo">
-          </div>
-      </div>
+     <!--Section: Contact v.2-->
+<section class="mb-4">
+
+<!--Section heading-->
+<h2 style="position:relative;left:300px" class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+<!--Section description-->
+<p style="position:relative;left:300px" class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+    a matter of hours to help you.</p>
+
+<div class="row" style="position:relative;left:400px">
+
+    <!--Grid column-->
+    <div class="col-md-9 mb-md-0 mb-5">
+        <form id="contact-form" name="contact-form" action="" method="post">
+
+            <!--Grid row-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <div class="md-form mb-0">
+                        <input type="text" id="name" name="name" class="form-control">
+                        <label for="name" class="">Your name</label>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6">
+                    <div class="md-form mb-0">
+                        <input type="text" id="email" name="email" class="form-control">
+                        <label for="email" class="">Your email</label>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+            </div>
+
+            <!--Grid row-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-12">
+
+                    <div class="md-form">
+                        <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                        <label for="message">Your message</label>
+                    </div>
+
+                </div>
+            </div>
+            <!--Grid row-->
+
+        </form>
+
+        <div class="text-center text-md-left">
+            <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+        </div>
+        <div class="status"></div>
+    </div>
+
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-3 text-center">
+        <ul class="list-unstyled mb-0">
+            <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                <p>San Francisco, CA 94126, USA</p>
+            </li>
+
+            <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                <p>+ 01 234 567 89</p>
+            </li>
+
+            <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                <p>contact@mdbootstrap.com</p>
+            </li>
+        </ul>
+    </div>
+    <!--Grid column-->
+
+</div>
+<?php
+        if(isset($success)){
+            echo $success;
+        }
+
+        ?>
+</section>
+<!--Section: Contact v.2-->
   </div>
   <!--End About Us-->
 
@@ -136,71 +213,13 @@ session_start();
   <!--End Recipes-->
 
   <!--start Menu-->
-  <div class="menu">
-      <div class="box-model">
-          <i class="fas fa-times fa-2x close"></i>
-          <div class="arrow">
-              <div class="arrow arrow-right"></div>
-              <div class="arrow arrow-left"></div>
-          </div>
-          <div class="box-image-container">
-              <div class="box-image">
-                  <img src=""  alt="Food Photo">
-              </div>
-          </div>
-      </div>
-      <div class="menu-image-container">
-          <div class="image active">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988517/big-menu-thumb-1.jpg" alt="Food Photo">
-          </div>
-          <div class="image">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988526/big-menu-thumb-2.jpg" alt="Food Photo">
-          </div>
-          <div class="image">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988525/big-menu-thumb-4.jpg" alt="Food Photo">
-          </div>
-          <div class="image">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988524/big-menu-thumb-6.jpg" alt="Food Photo">
-          </div>
-      </div>
-      <div class="text">
-          <h2>Discover</h2>
-          <h3>Menu</h3>
-          <div><i class="fas fa-asterisk"></i></div>
-          <p>For those with pure food indulgence in mind, come next door and sate your desires with our ever changing internationally and seasonally inspired small plates.  We love food, lots of different food, just like you.</p>
-          <div><a class="a-CTA" href="#">View The Full Menu</a></div>
-      </div>
-  </div>
+
   <!--End Menu-->
 
   <!--Start fixed-image-->
-  <div class="fixed-image">
-      <div class="text">
-          <h2>The Perfect</h2>
-          <h3>Blend</h3>
-      </div>
-  </div>
   <!--End fixed-image-->
 
   <!--start About Us-->
-  <div class="reservation">
-      <div class="text">
-          <h2>Culinary</h2>
-          <h3>Delight</h3>
-          <div><i class="fas fa-asterisk"></i></div>
-          <p>We promise an intimate and relaxed dining experience that offers something different to local and foreign patrons and ensures you enjoy a memorable food experience every time.</p>
-          <div><a class="a-CTA" href="#">Make a Reservation</a></div>
-      </div>
-      <div class="image-container">
-          <div class="image image1">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988518/bacon-1.jpg" alt="Food Photo">
-          </div>
-          <div class="image image2">
-              <img src="https://res.cloudinary.com/abdel-rahman-ali/image/upload/v1535988518/bacon-2.jpg" alt="Food Photo">
-          </div>
-      </div>
-  </div>
-  <!--End About Us-->
 
   <!--Start Footer-->
   <footer>

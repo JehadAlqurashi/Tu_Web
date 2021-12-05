@@ -4,7 +4,8 @@ if(isset($_GET['user'])){
     $user = $_GET['user'];
     $check = $connect->query("select * from users where username='$user'");
     if($check->num_rows){
-        $success = "Found !";
+        $check = $check->fetch_assoc();
+        $success = "We Found " . $check['username'];
     }
     else{
         $success = "Not Found !";

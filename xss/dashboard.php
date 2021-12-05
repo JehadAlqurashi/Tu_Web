@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     <!--ICON-->
     <link rel="shortcut icon" href="/DevanagariBrahmi/logo.png">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="../css/dash.css">
     <!--META TAGS-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta charset="UTF-8">
