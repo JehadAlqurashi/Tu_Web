@@ -1,7 +1,6 @@
 <?php
  include 'sidebar.php';
  $comment = $connect->query("select * from contact")->fetch_all(MYSQLI_ASSOC);
- print_r($comment);
 ?>
 
 <section class="page-content">
